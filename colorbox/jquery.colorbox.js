@@ -96,17 +96,18 @@
 	active,
 	
 	publicMethod,
-	boxElement = prefix + 'Element';
+	boxElement = prefix + '-element';
 	
 	// ****************
 	// HELPER FUNCTIONS
 	// ****************
 
 	// jQuery object generator to reduce code size
-	function $div(id, css) { 
-		id = id ? ' id="' + prefix + id + '"' : '';
+	function $div(name, css) { 
+		id = name ? ' id="' + prefix + '-' + name + '"' : '';
+		klass = name ? ' class="' + prefix + '-' + name + '"' : '';
 		css = css ? ' style="' + css + '"' : '';
-		return $('<div' + id + css + '/>');
+		return $('<div' + id + klass + css + '/>');
 	}
 
 	// Convert % values to pixels
@@ -238,19 +239,19 @@
 	publicMethod.init = function () {
 		// Create & Append jQuery Objects
 		$window = $(window);
-		$box = $div().attr({id: colorbox, 'class': isIE ? prefix + 'IE' : ''});
-		$overlay = $div("Overlay", isIE6 ? 'position:absolute' : '').hide();
+		$box = $div().attr({id: colorbox, 'class': colorbox + ' ' + (isIE ? prefix + '-ie' : '')});
+		$overlay = $div("overlay", isIE6 ? 'position:absolute' : '').hide();
 		
-		$wrap = $div("Wrapper");
-		$content = $div("Content").append(
-			$loaded = $div("LoadedContent", 'width:0; height:0'),
-			$loadingOverlay = $div("LoadingOverlay").add($div("LoadingGraphic")),
-			$title = $div("Title"),
-			$current = $div("Current"),
-			$next = $div("Next"),
-			$prev = $div("Previous"),
-			$slideshow = $div("Slideshow"),
-			$close = $div("Close")
+		$wrap = $div("wrapper");
+		$content = $div("content").append(
+			$loaded = $div("loaded-content", 'width:0; height:0'),
+			$loadingOverlay = $div("loading-overlay").add($div("loading-graphic")),
+			$title = $div("title"),
+			$current = $div("current"),
+			$next = $div("next"),
+			$prev = $div("previous"),
+			$slideshow = $div("slideshow"),
+			$close = $div("close")
 		);
 		
 		$wrap.append($content);
@@ -405,7 +406,7 @@
 		
 		$window.unbind('resize.' + prefix);
 		$loaded.remove();
-		$loaded = $div('LoadedContent').html(object);
+		$loaded = $div('loaded-content').html(object);
 		
 		function getWidth() {
 			settings.w = settings.w || $loaded.width();
@@ -426,7 +427,7 @@
 		
 		$loadingBay.hide();
 		
-		$('#' + prefix + 'Photo').css({cssFloat: 'none'});// floating the IMG removes the bottom line-height and fixed a problem where IE miscalculates the width of the parent element as 100% of the document width.
+		$('#' + prefix + '-photo').css({cssFloat: 'none'});// floating the IMG removes the bottom line-height and fixed a problem where IE miscalculates the width of the parent element as 100% of the document width.
 		
 		// Hides SELECT elements in IE6 because they would otherwise sit on top of the overlay.
 		if (isIE6) {
@@ -481,7 +482,7 @@
 					
 					if (settings.slideshow) {
 						$slideshow.show();
-						if (index === total - 1 && !loop && $box.is('.' + prefix + 'Slideshow_on')) {
+						if (index === total - 1 && !loop && $box.is('.' + prefix + '-slideshow-on')) {
 							$slideshow.click();
 						}
 					}
@@ -578,7 +579,7 @@
 		if (settings.inline) {
 			// Inserts an empty placeholder where inline content is being pulled from.
 			// An event is bound to put inline content back when ColorBox closes or loads new content.
-			$div('InlineTemp').hide().insertBefore($(href)[0]).bind(event_load + ' ' + event_cleanup, function () {
+			$div('inline-temp').hide().insertBefore($(href)[0]).bind(event_load + ' ' + event_cleanup, function () {
 				$(this).replaceWith($loaded.children());
 			});
 			prep($(href));
@@ -594,8 +595,8 @@
 				var percent;
 				
 				img.onload = null;
-				img.id = prefix + 'Photo';
-				$(img).css({margin: 'auto', border: 'none', display: 'block', cssFloat: 'left'});
+				img.id = prefix + '-photo';
+				$(img).css({'class': prefix + '-photo', margin: 'auto', border: 'none', display: 'block', cssFloat: 'left'});
 				
 				if (settings.scalePhotos) {
 					setResize = function () {
@@ -652,7 +653,7 @@
 	};
 
 	publicMethod.slideshow = function () {
-		var stop, timeOut, className = prefix + 'Slideshow_';
+		var stop, timeOut, className = prefix + '-slideshow-';
 		
 		$slideshow.bind(event_closed, function () {
 			$slideshow.unbind();
