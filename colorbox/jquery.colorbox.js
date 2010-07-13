@@ -1,5 +1,6 @@
 // ColorBox v1.3.9 - a full featured, light-weight, customizable lightbox based on jQuery 1.3
 // c) 2009 Jack Moore - www.colorpowered.com - jack@colorpowered.com
+// Additions c) 2010 Katalyst Web Design - katalyst.com.au - haydn@katalyst.com.au
 // Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 (function ($, window) {
 	
@@ -70,10 +71,6 @@
 	$box,
 	$wrap,
 	$content,
-	$topBorder,
-	$leftBorder,
-	$rightBorder,
-	$bottomBorder,
 	$related,
 	$window,
 	$loaded,
@@ -255,23 +252,9 @@
 			$slideshow = $div("Slideshow"),
 			$close = $div("Close")
 		);
-		$wrap.append( // The 3x3 Grid that makes up ColorBox
-			$div().append(
-				$div("TopLeft"),
-				$topBorder = $div("TopCenter"),
-				$div("TopRight")
-			),
-			$div().append(
-				$leftBorder = $div("MiddleLeft"),
-				$content,
-				$rightBorder = $div("MiddleRight")
-			),
-			$div().append(
-				$div("BottomLeft"),
-				$bottomBorder = $div("BottomCenter"),
-				$div("BottomRight")
-			)
-		).children().children().css({'float': 'left'});
+		
+		$wrap.append($content);
+		$content.css({'float': 'left'});
 		
 		$loadingBay = $div(false, 'position:absolute; width:9999px; visibility:hidden; display:none');
 		
@@ -285,8 +268,8 @@
 		}).addClass('hover');
 		
 		// Cache values needed for size calculations
-		interfaceHeight = $topBorder.height() + $bottomBorder.height() + $content.outerHeight(true) - $content.height();//Subtraction needed for IE6
-		interfaceWidth = $leftBorder.width() + $rightBorder.width() + $content.outerWidth(true) - $content.width();
+		interfaceHeight = $content.outerHeight(true) - $content.height();//Subtraction needed for IE6
+		interfaceWidth = $content.outerWidth(true) - $content.width();
 		loadedHeight = $loaded.outerHeight(true);
 		loadedWidth = $loaded.outerWidth(true);
 		
@@ -358,8 +341,8 @@
 		
 		function modalDimensions(that) {
 			// loading overlay height has to be explicitly set for IE6.
-			$topBorder[0].style.width = $bottomBorder[0].style.width = $content[0].style.width = that.style.width;
-			$loadingOverlay[0].style.height = $loadingOverlay[1].style.height = $content[0].style.height = $leftBorder[0].style.height = $rightBorder[0].style.height = that.style.height;
+			$content[0].style.width = that.style.width;
+			$loadingOverlay[0].style.height = $loadingOverlay[1].style.height = $content[0].style.height = that.style.height;
 		}
 		
 		$box.dequeue().animate({width: settings.w + loadedWidth, height: settings.h + loadedHeight, top: posTop, left: posLeft}, {
