@@ -9,6 +9,7 @@ RELEASE NOTES:
 ----------------------------------------------------------------------------------------------------------
 In Progress
 Files Changed: jquery.colorbox.js/jquery.colorbox-min.js/colorbox.css
+* Restructured the project folder.
 * Added classes in addition to ids.
 * Changed id names from camelCaseNames to hyphenated-names.
 * Removed border divs.

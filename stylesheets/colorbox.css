@@ -18,28 +18,28 @@
     The following rules are ordered and tabbed in a way that represents the
     order/nesting of the generated HTML, so that the structure easier to understand.
 */
-.cbox-overlay{background:url(images/overlay.png) 0 0 repeat;}
+.cbox-overlay{background:url(../images/overlay.png) 0 0 repeat;}
 .colorbox{}
-    .cbox-top-left{width:21px; height:21px; background:url(images/controls.png) -100px 0 no-repeat;}
-    .cbox-top-right{width:21px; height:21px; background:url(images/controls.png) -129px 0 no-repeat;}
-    .cbox-bottom-left{width:21px; height:21px; background:url(images/controls.png) -100px -29px no-repeat;}
-    .cbox-bottom-right{width:21px; height:21px; background:url(images/controls.png) -129px -29px no-repeat;}
-    .cbox-middle-left{width:21px; background:url(images/controls.png) left top repeat-y;}
-    .cbox-middle-right{width:21px; background:url(images/controls.png) right top repeat-y;}
-    .cbox-top-center{height:21px; background:url(images/border.png) 0 0 repeat-x;}
-    .cbox-bottom-center{height:21px; background:url(images/border.png) 0 -29px repeat-x;}
+    .cbox-top-left{width:21px; height:21px; background:url(../images/controls.png) -100px 0 no-repeat;}
+    .cbox-top-right{width:21px; height:21px; background:url(../images/controls.png) -129px 0 no-repeat;}
+    .cbox-bottom-left{width:21px; height:21px; background:url(../images/controls.png) -100px -29px no-repeat;}
+    .cbox-bottom-right{width:21px; height:21px; background:url(../images/controls.png) -129px -29px no-repeat;}
+    .cbox-middle-left{width:21px; background:url(../images/controls.png) left top repeat-y;}
+    .cbox-middle-right{width:21px; background:url(../images/controls.png) right top repeat-y;}
+    .cbox-top-center{height:21px; background:url(../images/border.png) 0 0 repeat-x;}
+    .cbox-bottom-center{height:21px; background:url(../images/border.png) 0 -29px repeat-x;}
     .cbox-content{background:#fff;}
         .cbox-loaded-content{margin-bottom:28px;}
         .cbox-title{position:absolute; bottom:4px; left:0; text-align:center; width:100%; color:.949494;}
         .cbox-current{position:absolute; bottom:4px; left:58px; color:.949494;}
         .cbox-slideshow{position:absolute; bottom:4px; right:30px; color:.0092ef;}
-        .cbox-previous{position:absolute; bottom:0; left:0px; background:url(images/controls.png) -75px 0px no-repeat; width:25px; height:25px; text-indent:-9999px;}
+        .cbox-previous{position:absolute; bottom:0; left:0px; background:url(../images/controls.png) -75px 0px no-repeat; width:25px; height:25px; text-indent:-9999px;}
         .cbox-previous.hover{background-position:-75px -25px;}
-        .cbox-next{position:absolute; bottom:0; left:27px; background:url(images/controls.png) -50px 0px no-repeat; width:25px; height:25px; text-indent:-9999px;}
+        .cbox-next{position:absolute; bottom:0; left:27px; background:url(../images/controls.png) -50px 0px no-repeat; width:25px; height:25px; text-indent:-9999px;}
         .cbox-next.hover{background-position:-50px -25px;}
-        .cbox-loading-overlay{background:url(images/loading_background.png) center center no-repeat;}
-        .cbox-loading-graphic{background:url(images/loading.gif) center center no-repeat;}
-        .cbox-close{position:absolute; bottom:0; right:0; background:url(images/controls.png) -25px 0px no-repeat; width:25px; height:25px; text-indent:-9999px;}
+        .cbox-loading-overlay{background:url(../images/loading_background.png) center center no-repeat;}
+        .cbox-loading-graphic{background:url(../images/loading.gif) center center no-repeat;}
+        .cbox-close{position:absolute; bottom:0; right:0; background:url(../images/controls.png) -25px 0px no-repeat; width:25px; height:25px; text-indent:-9999px;}
         .cbox-close.hover{background-position:-25px -25px;}
 
 /*
