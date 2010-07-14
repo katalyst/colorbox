@@ -8,7 +8,7 @@
 	// ColorBox Default Settings.	
 	// See http://colorpowered.com/colorbox for details.
 	defaults = {
-		transition: "elastic",
+		transition: "fade",
 		speed: 300,
 		width: false,
 		initialWidth: "600",
@@ -27,13 +27,14 @@
 		href: false,
 		title: false,
 		rel: false,
-		opacity: 0.9,
+		opacity: 0.85,
 		preloading: true,
 		current: "image {current} of {total}",
 		previous: "previous",
 		next: "next",
 		close: "close",
 		open: false,
+		loadingOverlay: "<p>Loading..</p>",
 		loop: true,
 		slideshow: false,
 		slideshowAuto: true,
@@ -191,6 +192,8 @@
 		
 		$current.add($prev).add($next).add($slideshow).add($title).hide();
 		
+    $loadingOverlay.html(settings.loadingOverlay);
+    
 		$close.html(settings.close).show();
 		
 		publicMethod.slideshow();
@@ -245,13 +248,15 @@
 		$wrap = $div("wrapper");
 		$content = $div("content").append(
 			$loaded = $div("loaded-content", 'width:0; height:0'),
-			$loadingOverlay = $div("loading-overlay").add($div("loading-graphic")),
-			$title = $div("title"),
-			$current = $div("current"),
-			$next = $div("next"),
-			$prev = $div("previous"),
-			$slideshow = $div("slideshow"),
-			$close = $div("close")
+			$loadingOverlay = $div("loading-overlay"),
+			$div("controls").append(
+  			$title = $div("title"),
+  			$current = $div("current"),
+  			$next = $div("next"),
+  			$prev = $div("previous"),
+  			$slideshow = $div("slideshow"),
+  			$close = $div("close")
+			)
 		);
 		
 		$wrap.append($content);
@@ -343,7 +348,7 @@
 		function modalDimensions(that) {
 			// loading overlay height has to be explicitly set for IE6.
 			$content[0].style.width = that.style.width;
-			$loadingOverlay[0].style.height = $loadingOverlay[1].style.height = $content[0].style.height = that.style.height;
+			$loadingOverlay[0].style.height = $content[0].style.height = that.style.height;
 		}
 		
 		$box.dequeue().animate({width: settings.w + loadedWidth, height: settings.h + loadedHeight, top: posTop, left: posLeft}, {
@@ -354,8 +359,8 @@
 				active = false;
 				
 				// shrink the wrapper down to exactly the size of colorbox to avoid a bug in IE's iframe implementation.
-				$wrap[0].style.width = (settings.w + loadedWidth + interfaceWidth) + "px";
-				$wrap[0].style.height = (settings.h + loadedHeight + interfaceHeight) + "px";
+        $wrap[0].style.width = (settings.w + loadedWidth + interfaceWidth) + "px";
+        $wrap[0].style.height = (settings.h + loadedHeight + interfaceHeight) + "px";
 				
 				if (loadedCallback) {
 					loadedCallback();
